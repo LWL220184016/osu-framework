@@ -15,6 +15,8 @@ using osu.Framework.Platform.SDL2;
 using osu.Framework.Platform.SDL3;
 using SixLabors.ImageSharp.Formats.Png;
 
+using osu.Framework.Input.Handlers.student;
+
 namespace osu.Framework.Platform
 {
     public abstract class SDLGameHost : GameHost
@@ -54,6 +56,9 @@ namespace osu.Framework.Platform
             yield return new TouchHandler();
             yield return new JoystickHandler();
             yield return new MidiHandler();
+
+            // student
+            yield return new ApiInputHandler();
         }
     }
 }
