@@ -5,7 +5,6 @@
 
 #nullable disable
 
-using System.Collections.Generic;
 using System.Text.Json;
 using osu.Framework.Bindables;
 using osu.Framework.Input.StateChanges;
@@ -47,13 +46,12 @@ namespace osu.Framework.Input.Handlers.student
 
         private Vector2? lastPosition;
 
-        public bool PerformAction(JsonDocument actionObject)
+        public bool PerformAction(JsonElement actionObject)
         {
             bool isActionHandled = false;
-            var root = actionObject.RootElement;
 
             // 2. 檢查 'mouseButtonDown' 屬性
-            if (root.TryGetProperty("MouseLeftBtn", out var MouseLeftBtn) && MouseLeftBtn.ValueKind == JsonValueKind.Number)
+            if (actionObject.TryGetProperty("MouseLeftBtn", out var MouseLeftBtn) && MouseLeftBtn.ValueKind == JsonValueKind.Number)
             {
                 var mb = MouseButton.Left;
                 if (MouseLeftBtn.GetInt32() == 0)
@@ -68,7 +66,7 @@ namespace osu.Framework.Input.Handlers.student
                 }
             }
             // 檢查 'move' 物件
-            if (root.TryGetProperty("move", out var moveElement))
+            if (actionObject.TryGetProperty("move", out var moveElement))
             {
                 if (moveElement.ValueKind == JsonValueKind.Array && moveElement.GetArrayLength() == 2)
                 {
