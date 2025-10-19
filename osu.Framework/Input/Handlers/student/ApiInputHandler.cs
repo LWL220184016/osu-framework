@@ -59,7 +59,7 @@ namespace osu.Framework.Input.Handlers.student
                     handleMouseDown(mb);
                     isActionHandled = true;
                 }
-                else
+                else if (MouseLeftBtn.GetInt32() == 1)
                 {
                     handleMouseUp(mb);
                     isActionHandled = true;
