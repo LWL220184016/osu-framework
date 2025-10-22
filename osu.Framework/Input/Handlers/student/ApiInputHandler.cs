@@ -44,8 +44,6 @@ namespace osu.Framework.Input.Handlers.student
 
         public override bool IsActive => true;
 
-        private Vector2? lastPosition;
-
         public bool PerformAction(JsonElement actionObject)
         {
             bool isActionHandled = false;
