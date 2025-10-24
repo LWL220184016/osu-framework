@@ -502,7 +502,8 @@ namespace osu.Framework.Platform.SDL2
 
                 case SDL_WindowEventID.SDL_WINDOWEVENT_MINIMIZED:
                 case SDL_WindowEventID.SDL_WINDOWEVENT_FOCUS_LOST:
-                    Focused = false;
+                    // student: disable for handler click event when not focus window
+                    //Focused = false;
                     break;
 
                 case SDL_WindowEventID.SDL_WINDOWEVENT_CLOSE:

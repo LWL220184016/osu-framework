@@ -140,8 +140,9 @@ namespace osu.Framework.Input.Handlers.Mouse
 
         public virtual void FeedbackMousePositionChange(Vector2 position, bool isSelfFeedback)
         {
-            if (!Enabled.Value)
-                return;
+            // student: disable for handler click event when not focus window
+            //if (!Enabled.Value)
+            //    return;
 
             if (!isSelfFeedback && isActive.Value)
                 // if another handler has updated the cursor position, handle updating the OS cursor so we can seamlessly revert

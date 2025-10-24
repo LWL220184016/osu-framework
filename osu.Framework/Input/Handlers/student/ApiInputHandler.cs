@@ -88,6 +88,21 @@ namespace osu.Framework.Input.Handlers.student
                 }
             }
 
+            if (actionObject.TryGetProperty("KeyBoard_space", out var keyElement))
+            {
+                var k_space = Key.Space;
+
+                if (keyElement.GetInt32() == 0)
+                {
+                    handleKeyBoardDown(k_space);
+                    isActionHandled = true;
+                }
+                else if (keyElement.GetInt32() == 1)
+                {
+                    handleKeyBoardUp(k_space);
+                    isActionHandled = true;
+                }
+            }
             return isActionHandled;
         }
 
@@ -114,6 +129,9 @@ namespace osu.Framework.Input.Handlers.student
         private void handleMouseUp(MouseButton button) => enqueueInput(new MouseButtonInput(button, false));
 
         private void handleMouseWheel(Vector2 delta, bool precise) => enqueueInput(new MouseScrollRelativeInput { Delta = delta, IsPrecise = precise });
+
+        private void handleKeyBoardDown(Key key) => enqueueInput(new KeyboardKeyInput(key, true));
+        private void handleKeyBoardUp(Key key) => enqueueInput(new KeyboardKeyInput(key, false));
 
         private void enqueueInput(IInput input)
         {
